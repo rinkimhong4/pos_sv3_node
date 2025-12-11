@@ -6,8 +6,13 @@ var logger = require("morgan");
 
 var indexRouter = require("./routes/index");
 // var usersRouter = require("./routes/users");
+
+//import routes
 var { categories } = require("./routes/category.route");
 var { order } = require("./routes/order.route");
+var { orderDetail } = require("./routes/order.detail.route");
+var { product } = require("./routes/product.route");
+var { user } = require("./routes/users.route");
 
 var app = express();
 
@@ -21,16 +26,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-const db = require("./services/DBContext");
-
-db.sequelize
-  .authenticate()
-  .then(() => console.log(" Database connected"))
-  .catch((err) => console.error(" DB connection failed:", err));
-//
+// routes
 app.use("/", indexRouter);
 categories(app);
 order(app);
+orderDetail(app);
+product(app);
+user(app);
 // app.use("/users", usersRouter);
 
 // catch 404 and forward to error handler

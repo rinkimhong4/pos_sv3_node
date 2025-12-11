@@ -17,7 +17,7 @@ module.exports = (sequelize) => {
     {
       tableName: "Category",
       timestamps: false,
-      // indexes: [{ fields: ["CategoryName"] }],
+      indexes: [{ fields: ["CategoryName"] }],
     }
   );
 
